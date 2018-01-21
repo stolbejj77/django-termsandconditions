@@ -13,7 +13,7 @@
     <div id="termsandconditions" class="termsandconditions-modal">
         <div id="toc-header">
             <h6>Our Terms and Conditions Have Changed</h6>
-            <a href='javascript:void(0)' onclick='termsandconditions_overlay();' title="{% trans 'Close' %}" class="toc-close">&times;</a>
+            <a href='javascript:void(0)' onclick='termsandconditions_overlay();' class="toc-close">&times;</a>
         </div>
         <div id="toc-content">
             <div id="toc-body">
@@ -26,7 +26,7 @@
                 <span> document{{ not_agreed_terms|length|pluralize }}. Please, review and accept the changes to prevent future interruptions.</span>
             </div>
             <div id="toc-footer">
-                <a class="toc-accept-all-btn" href="{% url 'tc_accept_page' %}{% if returnTo %}?returnTo={{ returnTo }}{% endif %}">{% trans 'ACCEPT ALL' %}</a>
+                <a class="toc-accept-all-btn" href="{% url 'tc_accept_page' %}{% if returnTo %}?returnTo={{ returnTo }}{% endif %}">{% trans 'GO TO ACCEPT PAGE' %}</a>
             </div>
         </div>
     </div>

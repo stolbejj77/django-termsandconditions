@@ -33,15 +33,11 @@
     top: 50%;
     margin-top: -14px;
     right: 15px;
-    color: #ffffff;
+    color: #0a62a9;
     font-size: 20px;
     font-weight: 600;
 }
 
-#termsandconditions #toc-header .toc-close:hover {
-    color: #d3d3d3;
-    text-decoration: none;
-}
 
 #termsandconditions #toc-content #toc-body {
     padding: 15px 0;
@@ -76,4 +72,13 @@
         margin-left: 0;
         left: 0;
     }
+}
+.dialogIsOpen #wrapper {
+
+  /* Blur and de-color */
+  -webkit-filter: blur(5px) grayscale(50%);
+
+  /* Recede */
+  -webkit-transform: scale(0.9);
+
 }

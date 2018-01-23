@@ -12,12 +12,12 @@
 
     <div id="termsandconditions" class="termsandconditions-modal">
         <div id="toc-header">
-            <h6>Our Terms and Conditions Have Changed</h6>
+            <h6>Your Professional Service Agreement Have Changed</h6>
             <a href='javascript:void(0)' onclick='termsandconditions_overlay();' class="toc-close">&times;</a>
         </div>
         <div id="toc-content">
             <div id="toc-body">
-                <span>Changes have been made to our </span>
+                <span>Changes have been made to your </span>
                 {% for terms in not_agreed_terms %}
                     {% if not forloop.first and not forloop.last %}<span>, </span>{% endif %}
                     {% if forloop.last and not_agreed_terms|length > 2 %}<span>, and </span>{% elif forloop.last and not_agreed_terms|length > 1 %}<span> and </span>{% endif %}

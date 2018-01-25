@@ -30,7 +30,7 @@
             {% csrf_token %}
             {{ form.terms }}
             {{ form.returnTo }}
-			<p style="float:left;"><input type="text" placeholder="Please type your name:" data-role="text" required pattern="{{user.name}}" id="name" oninvalid="setCustomValidity('Please enter your name')">
+			<p><input type="text" placeholder="Please type your name:" data-role="text" required pattern="{{user.name}}" id="name" oninvalid="setCustomValidity('Please enter your name')">
             <input class="btn btn-primary block" id="accept" type="submit" value="Accept{% if form.initial.terms|length > 1 %} All{% endif %}" data-role="button"></p>
         </form>
 		</div>

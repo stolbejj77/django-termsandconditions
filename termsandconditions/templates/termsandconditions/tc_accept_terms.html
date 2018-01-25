@@ -37,15 +37,23 @@
             <p><input class="btn btn-primary block full-width" id="accept" type="submit" value="Accept{% if form.initial.terms|length > 1 %} All{% endif %}" data-role="button"></p>
         </form>
 		<script type="text/javascript">
-			var name = document.getElementById("name");
-
-			name.addEventListener("input", function (event) {
+		    var name = document.getElementById("name");
+			if (el.addEventListener){
+			  name.addEventListener("input", function (event) {
 			  if (name.validity.typeMismatch) {
 				name.setCustomValidity("Please type your name");
 			  } else {
 				name.setCustomValidity("");
 			  }
 			});
+			} else if (el.attachEvent){
+			  if (name.validity.typeMismatch) {
+				name.setCustomValidity("Please type your name");
+			  } else {
+				name.setCustomValidity("");
+			  }
+			}
+		
 		</script>
     </section>
 {% endblock %}

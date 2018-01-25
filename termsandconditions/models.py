@@ -33,9 +33,6 @@ class UserTermsAndConditions(models.Model):
     def __str__(self):  # pragma: nocover
         return "{0}:{1}-{2:.2f}".format(self.user.get_username(), self.terms.slug, self.terms.version_number)
 
-	@property
-	def userName(self)
-		return user.name
 		
 class TermsAndConditions(models.Model):
     """Holds Versions of TermsAndConditions

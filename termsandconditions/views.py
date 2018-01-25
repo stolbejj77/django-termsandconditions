@@ -83,7 +83,6 @@ class AcceptTermsView(CreateView, GetTermsViewMixin):
 
         terms = self.get_terms(self.kwargs)
         return_to = self.request.GET.get('returnTo', '/')
-    )
 
         return {'terms': terms, 'returnTo': return_to}
 

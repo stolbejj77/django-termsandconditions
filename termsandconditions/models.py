@@ -33,7 +33,10 @@ class UserTermsAndConditions(models.Model):
     def __str__(self):  # pragma: nocover
         return "{0}:{1}-{2:.2f}".format(self.user.get_username(), self.terms.slug, self.terms.version_number)
 
-
+	@property
+	def userName(self)
+		return user.name
+		
 class TermsAndConditions(models.Model):
     """Holds Versions of TermsAndConditions
     Active one for a given slug is: date_active is not Null and is latest not in future"""

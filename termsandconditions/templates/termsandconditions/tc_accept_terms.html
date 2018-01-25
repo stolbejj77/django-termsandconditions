@@ -29,6 +29,7 @@
             <p><a href="{% url "tc_print_page" terms.slug|safe terms.version_number|safe %}"
                   target="_blank">Print {{ terms.name|safe }}</a></p>
         {% endfor %}
+		<div id='terms-accept'>
         <form action="{% url 'tc_accept_page' %}" method="post" id="tc-terms-form" data-ajax="false">
             {% csrf_token %}
             {{ form.terms }}
@@ -36,6 +37,6 @@
 			<p><input type="text" placeholder="Please type your name:" data-role="text" required pattern="{{user.name}}" id="name" oninvalid="setCustomValidity('Please enter your name')"></p>
             <p><input class="btn btn-primary block full-width" id="accept" type="submit" value="Accept{% if form.initial.terms|length > 1 %} All{% endif %}" data-role="button"></p>
         </form>
-		
+		</div>
     </section>
 {% endblock %}

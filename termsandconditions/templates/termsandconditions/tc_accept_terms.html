@@ -38,7 +38,7 @@
         </form>
 		<script type="text/javascript">
 		    var name = document.getElementById("name");
-			if (el.addEventListener){
+			if (name.addEventListener){
 			  name.addEventListener("input", function (event) {
 			  if (name.validity.typeMismatch) {
 				name.setCustomValidity("Please type your name");
@@ -46,7 +46,7 @@
 				name.setCustomValidity("");
 			  }
 			});
-			} else if (el.attachEvent){
+			} else if (name.attachEvent){
 			  if (name.validity.typeMismatch) {
 				name.setCustomValidity("Please type your name");
 			  } else {

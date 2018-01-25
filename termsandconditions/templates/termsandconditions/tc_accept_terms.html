@@ -25,7 +25,7 @@
             <p><a href="{% url "tc_print_page" terms.slug|safe terms.version_number|safe %}"
                   target="_blank">Print {{ terms.name|safe }}</a></p>
         {% endfor %}
-		<div style="text-align: center; vertical-align: middle;">
+	
         <form action="{% url 'tc_accept_page' %}" method="post" id="tc-terms-form" data-ajax="false">
             {% csrf_token %}
             {{ form.terms }}

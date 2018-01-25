@@ -36,18 +36,16 @@
 			<p><input type="text" placeholder="Please type your name:" data-role="text" required pattern="{{user.name}}" id="name"></p>
             <p><input class="btn btn-primary block full-width" id="accept" type="submit" value="Accept{% if form.initial.terms|length > 1 %} All{% endif %}" data-role="button"></p>
         </form>
-    </section>
-{% endblock %}
-{% block js %}
-<script type="text/javascript">
-	var name = document.getElementById("name");
+		<script type="text/javascript">
+			var name = document.getElementById("name");
 
-	name.addEventListener("input", function (event) {
-	  if (name.validity.typeMismatch) {
-		name.setCustomValidity("Please type your name");
-	  } else {
-		name.setCustomValidity("");
-	  }
-	});
-</script>
+			name.addEventListener("input", function (event) {
+			  if (name.validity.typeMismatch) {
+				name.setCustomValidity("Please type your name");
+			  } else {
+				name.setCustomValidity("");
+			  }
+			});
+		</script>
+    </section>
 {% endblock %}

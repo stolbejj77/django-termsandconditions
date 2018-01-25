@@ -17,11 +17,6 @@
 	.toc-print-container {
 		margin: 0 50px;
 	}
-
-	#terms-accept{
-		text-align: center;
-		vertical-align: middle;
-	}
 </style>
 	
 {% endblock %}
@@ -33,7 +28,7 @@
             <h1>Please Accept {{ terms.name|safe }} {{ terms.version_number|safe }}</h1>
             {% if terms.info %}
                 <h4>Summary of Changes</h4>
-                <div class="toc-container">
+                <div style="border: 2px solid lightgray;padding: 10px 20px;max-height: 400px;overflow: auto;margin-bottom: 20px;">
                     {{ terms.info|safe }}
                 </div>
                 <h4>Full Text</h4>
@@ -47,7 +42,7 @@
             <p><a href="{% url "tc_print_page" terms.slug|safe terms.version_number|safe %}"
                   target="_blank">Print {{ terms.name|safe }}</a></p>
         {% endfor %}
-		<div id='terms-accept'>
+		<div style="text-align: center; vertical-align: middle;">
         <form action="{% url 'tc_accept_page' %}" method="post" id="tc-terms-form" data-ajax="false">
             {% csrf_token %}
             {{ form.terms }}

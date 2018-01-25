@@ -5,7 +5,25 @@
 {% block title %}Accept Terms and Conditions{% endblock %}
 {% block styles %}
     {{ block.super }}
-    <link href="{% static 'termsandconditions/css/view_accept.css' %}" rel="stylesheet">
+    <style>
+	.toc-container {
+		border: 2px solid lightgray;
+		padding: 10px 20px;
+		max-height: 400px;
+		overflow: auto;
+		margin-bottom: 20px;
+	}
+
+	.toc-print-container {
+		margin: 0 50px;
+	}
+
+	#terms-accept{
+		text-align: center;
+		vertical-align: middle;
+	}
+</style>
+	
 {% endblock %}
 
 {% block content %}

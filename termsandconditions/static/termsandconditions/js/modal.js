@@ -5,6 +5,7 @@ function termsandconditions_overlay() {
         el[i].style.visibility = (el[i].style.visibility == "visible") ? "hidden" : "visible";
     };
      $("body").toggleClass("dialogIsOpen");
+	 $("navbar-default").toggleClass("dialogIsOpen");
      window.onkeyup = function(e) {
        var key = e.keyCode ? e.keyCode : e.which;
 

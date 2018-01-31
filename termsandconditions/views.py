@@ -76,7 +76,7 @@ class AcceptTermsView(CreateView, GetTermsViewMixin):
         """Pass additional context data"""
         context = super(AcceptTermsView, self).get_context_data(**kwargs)
         context['terms_base_template'] = getattr(settings, 'TERMS_BASE_TEMPLATE', DEFAULT_TERMS_BASE_TEMPLATE)
-		context['data'] = fleet_pricing(**kwargs)
+        context['data'] = fleet_pricing(**kwargs)
         return context
 
     def get_initial(self):

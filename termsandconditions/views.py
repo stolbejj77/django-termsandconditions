@@ -14,7 +14,7 @@ from django.views.generic import DetailView, CreateView, FormView
 from django.template.loader import get_template
 from django.core.mail import send_mail
 import logging
-from billing.utils import fleet_pricing
+from billing.utils import return_fleet_pricing
 from smtplib import SMTPException
 
 LOGGER = logging.getLogger(name='termsandconditions')

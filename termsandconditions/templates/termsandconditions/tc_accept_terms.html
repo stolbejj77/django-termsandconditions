@@ -25,7 +25,9 @@
             <p><a href="{% url "tc_print_page" terms.slug|safe terms.version_number|safe %}"
                   target="_blank">Print {{ terms.name|safe }}</a></p>
         {% endfor %}
-		<div >		
+		<div >
+		{% include "billing/legal/fleet_pricing.html" with objects=user %}
+		
 		
 		</div>
 		<div style="padding-bottom:20px;padding-top:20px;">

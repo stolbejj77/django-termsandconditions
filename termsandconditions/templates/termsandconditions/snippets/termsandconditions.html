@@ -21,7 +21,7 @@
                 {% for terms in not_agreed_terms %}
                     {% if not forloop.first and not forloop.last %}<span>, </span>{% endif %}
                     {% if forloop.last and not_agreed_terms|length > 2 %}<span>, and </span>{% elif forloop.last and not_agreed_terms|length > 1 %}<span> and </span>{% endif %}
-                    <a class="terms-link" href="{% url 'tc_accept_specific_page' terms.slug %}{% if returnTo %}?returnTo={{ returnTo }}{% endif %}">{% if terms.name %}{{ terms.name|safe }}{% endif %}</a>
+                    {% if terms.name %}{{ terms.name|safe }}{% endif %}
                 {% endfor %}. Please review and accept the changes to prevent future interruptions.
             </div>
             <div id="toc-footer">

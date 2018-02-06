@@ -22,6 +22,7 @@ class UserTermsAndConditions(models.Model):
     terms = models.ForeignKey("TermsAndConditions", related_name="userterms", on_delete=models.CASCADE)
     ip_address = models.GenericIPAddressField(null=True, blank=True, verbose_name='IP Address')
     date_accepted = models.DateTimeField(auto_now_add=True, verbose_name='Date Accepted')
+	signed_as = models.TextField(max_length=255, blank=True)
 
     class Meta:
         """Model Meta Information"""

@@ -125,7 +125,7 @@ class AcceptTermsView(CreateView, GetTermsViewMixin):
                     user=user,
                     terms=TermsAndConditions.objects.get(pk=int(terms_id)),
                     ip_address=ip_address,
-					signed_as=request.accept
+                    signed_as=request.accept
                 )
                 new_user_terms.save()
             except IntegrityError:  # pragma: nocover

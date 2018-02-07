@@ -144,7 +144,7 @@ class TermsAndConditions(models.Model):
                 # Django's has_perm() returns True if is_superuser, we don't want that
                 return []
         try:        
-            user_signature = UserTermsAndConditions.objects.filter(user=user)
+            user_signature = UserTermsAndConditions.objects.filter(user=user)[0]
             print(user_signature)
             return []
         except (TypeError, UserTermsAndConditions.DoesNotExist):

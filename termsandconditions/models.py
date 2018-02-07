@@ -135,7 +135,7 @@ class TermsAndConditions(models.Model):
 
         return not_agreed_terms
 		
-     @staticmethod
+    @staticmethod
     def get_active_terms_one_signature_is_enough(user):
         """Checks to see if a specified user has agreed to at least one version of the terms and conditions"""
 
@@ -144,21 +144,19 @@ class TermsAndConditions(models.Model):
                 # Django's has_perm() returns True if is_superuser, we don't want that
                 return []
         try:		
-		    user_signature = UserTermsAndConditions.objects.filter(user=user)
+            user_signature = UserTermsAndConditions.objects.filter(user=user)
             return []
-        except:
-            
-        not_agreed_terms = cache.get('tandc.not_agreed_terms_' + user.get_username())
-        if not_agreed_terms is None:
-            try:
-                LOGGER.debug("Not Agreed Terms")
-                not_agreed_terms = TermsAndConditions.get_active_terms_list().exclude(
-                    userterms__in=UserTermsAndConditions.objects.filter(user=user)
-                ).order_by('date_active')
+        except (TypeError, UserTermsAndConditions.DoesNotExist):
+            not_agreed_terms = cache.get('tandc.not_agreed_terms_' + user.get_username())
+			if not_agreed_terms is None:
+				try:
+					LOGGER.debug("Not Agreed Terms")
+					not_agreed_terms = TermsAndConditions.get_active_terms_list().exclude(
+						userterms__in=UserTermsAndConditions.objects.filter(user=user)
+					).order_by('date_active')
 
-                cache.set('tandc.not_agreed_terms_' + user.get_username(), not_agreed_terms, TERMS_CACHE_SECONDS)
-            except (TypeError, UserTermsAndConditions.DoesNotExist):
-                return []
+					cache.set('tandc.not_agreed_terms_' + user.get_username(), not_agreed_terms, TERMS_CACHE_SECONDS)
+				except (TypeError, UserTermsAndConditions.DoesNotExist):
+					return []
 
-        return not_agreed_terms
-
+			return not_agreed_terms

@@ -147,7 +147,7 @@ class TermsAndConditions(models.Model):
             user_signature = UserTermsAndConditions.objects.filter(user=user)[0]
             print(user_signature)
             return []
-        except (TypeError, UserTermsAndConditions.DoesNotExist):
+        except (IndexError, UserTermsAndConditions.DoesNotExist):
             print('no signatures found for user')
             not_agreed_terms = cache.get('tandc.not_agreed_terms_' + user.get_username())
             if not_agreed_terms is None:

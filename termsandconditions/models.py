@@ -127,7 +127,7 @@ class TermsAndConditions(models.Model):
                 LOGGER.debug("Not Agreed Terms")
                 not_agreed_terms = TermsAndConditions.get_active_terms_list().exclude(
                     userterms__in=UserTermsAndConditions.objects.filter(user=user)
-                ).order_by('date_active')[0]
+                ).order_by('date_active')
 
                 cache.set('tandc.not_agreed_terms_' + user.get_username(), not_agreed_terms, TERMS_CACHE_SECONDS)
             except (TypeError, UserTermsAndConditions.DoesNotExist):

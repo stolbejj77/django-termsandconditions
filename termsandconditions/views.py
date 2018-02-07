@@ -29,7 +29,7 @@ class GetTermsViewMixin(object):
 
         slug = kwargs.get("slug")
         version = kwargs.get("version")
-
+        print(slug)
         if slug and version:
             terms = [TermsAndConditions.objects.filter(slug=slug, version_number=version).latest('date_active')]
         elif slug:

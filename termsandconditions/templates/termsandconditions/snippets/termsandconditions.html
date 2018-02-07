@@ -25,7 +25,7 @@
                 {% endfor %}. Please review and accept the changes to prevent future interruptions.
             </div>
             <div id="toc-footer">
-                <a class="toc-accept-all-btn" href="{% url 'tc_accept_page' %}?slug=instafuel-site-terms?version=1.10{% if returnTo %}?returnTo={{ returnTo }}{% endif %}">{% trans 'GO TO ACCEPT PAGE' %}</a>
+                <a class="toc-accept-all-btn" href="{% url 'tc_accept_page' %}{% if returnTo %}?returnTo={{ returnTo }}{% endif %}">{% trans 'GO TO ACCEPT PAGE' %}</a>
             </div>
         </div>
     </div>

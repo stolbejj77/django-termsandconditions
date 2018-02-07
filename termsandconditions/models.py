@@ -107,7 +107,7 @@ class TermsAndConditions(models.Model):
 
         active_terms_list = cache.get('tandc.active_terms_list')
         if active_terms_list is None:
-            active_terms_list = TermsAndConditions.objects.filter(id__in=TermsAndConditions.get_active_terms_ids()).order_by('slug')
+            active_terms_list = TermsAndConditions.objects.filter(id__in=TermsAndConditions.get_active_terms_ids()).order_by('date_active')
             cache.set('tandc.active_terms_list', active_terms_list, TERMS_CACHE_SECONDS)
 
         return active_terms_list
@@ -127,11 +127,11 @@ class TermsAndConditions(models.Model):
                 LOGGER.debug("Not Agreed Terms")
                 not_agreed_terms = TermsAndConditions.get_active_terms_list().exclude(
                     userterms__in=UserTermsAndConditions.objects.filter(user=user)
-                ).order_by('slug')
+                ).order_by('date_active')
 
                 cache.set('tandc.not_agreed_terms_' + user.get_username(), not_agreed_terms, TERMS_CACHE_SECONDS)
             except (TypeError, UserTermsAndConditions.DoesNotExist):
                 return []
 
-        return not_agreed_terms
+        return not_agreed_terms[0]
 

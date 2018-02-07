@@ -143,20 +143,22 @@ class TermsAndConditions(models.Model):
             if user.has_perm(TERMS_EXCLUDE_USERS_WITH_PERM) and not user.is_superuser:
                 # Django's has_perm() returns True if is_superuser, we don't want that
                 return []
-    try:        
-        user_signature = UserTermsAndConditions.objects.filter(user=user)
-        return []
-    except (TypeError, UserTermsAndConditions.DoesNotExist):
-        not_agreed_terms = cache.get('tandc.not_agreed_terms_' + user.get_username())
-        if not_agreed_terms is None:
-            try:
-                LOGGER.debug("Not Agreed Terms")
-                not_agreed_terms = TermsAndConditions.get_active_terms_list().exclude(
-                    userterms__in=UserTermsAndConditions.objects.filter(user=user)
-                ).order_by('date_active')
+        try:        
+            user_signature = UserTermsAndConditions.objects.filter(user=user)
+            print(user_signature)
+            return []
+        except (TypeError, UserTermsAndConditions.DoesNotExist):
+            print('no signatures found for user')
+            not_agreed_terms = cache.get('tandc.not_agreed_terms_' + user.get_username())
+            if not_agreed_terms is None:
+                try:
+                    LOGGER.debug("Not Agreed Terms")
+                    not_agreed_terms = TermsAndConditions.get_active_terms_list().exclude(
+                        userterms__in=UserTermsAndConditions.objects.filter(user=user)
+                    ).order_by('date_active')
 
-                cache.set('tandc.not_agreed_terms_' + user.get_username(), not_agreed_terms, TERMS_CACHE_SECONDS)
-            except (TypeError, UserTermsAndConditions.DoesNotExist):
-                return []
+                    cache.set('tandc.not_agreed_terms_' + user.get_username(), not_agreed_terms, TERMS_CACHE_SECONDS)
+                except (TypeError, UserTermsAndConditions.DoesNotExist):
+                    return []
 
-        return not_agreed_terms
+            return not_agreed_terms

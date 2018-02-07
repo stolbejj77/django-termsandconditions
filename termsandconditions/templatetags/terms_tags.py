@@ -41,7 +41,7 @@ def show_terms_if_not_agreed_no_repeats(context, field=TERMS_HTTP_PATH_FIELD):
     """
     request = context['request']
     url = urlparse(request.META[field])
-    not_agreed_terms = TermsAndConditions.get_active_terms_not_agreed_to(request.user)
+    not_agreed_terms = TermsAndConditions.get_active_terms_one_signature_is_enough(request.user)
 
     if not_agreed_terms and is_path_protected(url.path):
         return {'not_agreed_terms': not_agreed_terms, 'returnTo': url.path}

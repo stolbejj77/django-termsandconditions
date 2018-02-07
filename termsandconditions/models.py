@@ -77,7 +77,7 @@ class TermsAndConditions(models.Model):
                 LOGGER.error("Requested Terms and Conditions that Have Not Been Created.")
                 return None
 
-        return active_terms
+        return active_terms[0]
 
     @staticmethod
     def get_active_terms_ids():

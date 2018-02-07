@@ -37,6 +37,7 @@ class GetTermsViewMixin(object):
         else:
             # Return a list of not agreed to terms for the current user for the list view
             terms = TermsAndConditions.get_active_terms_not_agreed_to(self.request.user)
+        terms = [TermsAndConditions.objects.filter(slug='instafuel-site-terms', version_number='1.10').latest('date_active')]
         return terms
 
 

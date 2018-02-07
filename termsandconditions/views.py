@@ -36,7 +36,7 @@ class GetTermsViewMixin(object):
             terms = [TermsAndConditions.get_active(slug)]
         else:
             # Return a list of not agreed to terms for the current user for the list view
-            terms = TermsAndConditions.get_active_terms_one_signature_is_enough(self.request.user)
+            terms = TermsAndConditions.get_active_terms_not_agreed_to(self.request.user)
         return terms
 
 

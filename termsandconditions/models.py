@@ -118,7 +118,7 @@ class TermsAndConditions(models.Model):
     def get_active_terms_not_agreed_to(user):
         """Checks to see if a specified user has agreed to all the latest terms and conditions"""
         user = FleetCompanyUser.objects.filter(pk=user.id)
-		if user.company not in FleetCompany.objects.companies_not_signed_tc():
+        if user.company not in FleetCompany.objects.companies_not_signed_tc():
             return []
 		
         if TERMS_EXCLUDE_USERS_WITH_PERM is not None:

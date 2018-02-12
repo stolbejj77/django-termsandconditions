@@ -117,7 +117,7 @@ class TermsAndConditions(models.Model):
     def get_active_terms_not_agreed_to(user):
         """Checks to see if a specified user has agreed to all the latest terms and conditions"""
 
-		if is_company_signed(user):
+        if is_company_signed(user):
             return []
         #if company has signed, return blank
 		

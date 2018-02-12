@@ -8,7 +8,6 @@ from django.conf import settings
 from django.utils import timezone
 from django.core.cache import cache
 import logging
-from fleets.utils import is_company_signed
 
 LOGGER = logging.getLogger(name='termsandconditions')
 
@@ -116,10 +115,6 @@ class TermsAndConditions(models.Model):
     @staticmethod
     def get_active_terms_not_agreed_to(user):
         """Checks to see if a specified user has agreed to all the latest terms and conditions"""
-
-        if is_company_signed(user):
-            return []
-        #if company has signed, return blank
 		
         if TERMS_EXCLUDE_USERS_WITH_PERM is not None:
             if user.has_perm(TERMS_EXCLUDE_USERS_WITH_PERM) and not user.is_superuser:

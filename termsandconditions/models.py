@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.core.cache import cache
 import logging
-from accounts.models import FleetCompanyUser
+#from accounts.models import FleetCompanyUser
 from fleets.models import FleetCompany
 
 LOGGER = logging.getLogger(name='termsandconditions')
@@ -117,7 +117,7 @@ class TermsAndConditions(models.Model):
     @staticmethod
     def get_active_terms_not_agreed_to(user):
         """Checks to see if a specified user has agreed to all the latest terms and conditions"""
-        user = FleetCompanyUser.objects.filter(pk=user.id)
+        #user = FleetCompanyUser.objects.filter(pk=user.id)
         if user.company not in FleetCompany.objects.companies_not_signed_tc():
             return []
 		

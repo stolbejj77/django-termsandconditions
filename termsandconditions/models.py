@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.core.cache import cache
 import logging
-from billing.utils import get_last_pricing_change_date_by_user
+#from billing.utils import get_last_pricing_change_date_by_user
 
 LOGGER = logging.getLogger(name='termsandconditions')
 
@@ -147,13 +147,13 @@ class TermsAndConditions(models.Model):
         try:        
             user_signature = UserTermsAndConditions.objects.filter(user=user).latest('date_accepted')
             #if user signed after the latest pricing change, they don't have sign again, else, they do
-            if user_signature.date_accepted > get_last_pricing_change_date_by_user(user):
+            #if user_signature.date_accepted > get_last_pricing_change_date_by_user(user):
             #print(user_signature)
-                return []
-            else:
-                not_agreed_terms = TermsAndConditions.get_active_terms_list().order_by('date_active')[0]
-                cache.set('tandc.not_agreed_terms_' + user.get_username(), not_agreed_terms, TERMS_CACHE_SECONDS)
-                return not_agreed_terms
+            #    return []
+            #else:
+            #    not_agreed_terms = TermsAndConditions.get_active_terms_list().order_by('date_active')[0]
+            #    cache.set('tandc.not_agreed_terms_' + user.get_username(), not_agreed_terms, TERMS_CACHE_SECONDS)
+            #    return not_agreed_terms
         except (IndexError, UserTermsAndConditions.DoesNotExist):
             print('no signatures found for user')
             not_agreed_terms = cache.get('tandc.not_agreed_terms_' + user.get_username())

@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.core.cache import cache
 import logging
-from billing.models.pricing.fleet import FleetVehiclePricing
+from billing.utils import get_last_pricing_change_date_by_user
 
 LOGGER = logging.getLogger(name='termsandconditions')
 
@@ -147,7 +147,7 @@ class TermsAndConditions(models.Model):
         try:        
             user_signature = UserTermsAndConditions.objects.filter(user=user).latest('date_accepted')
             #if user signed after the latest pricing change, they don't have sign again, else, they do
-            if user_signature.date_accepted > FleetVehiclePricing.get_last_pricing_change_date_by_user(user):
+            if user_signature.date_accepted > get_last_pricing_change_date_by_user(user):
             #print(user_signature)
                 return []
             else:

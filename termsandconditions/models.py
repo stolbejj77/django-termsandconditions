@@ -116,7 +116,7 @@ class TermsAndConditions(models.Model):
     @staticmethod
     def get_active_terms_not_agreed_to(user):
         """Checks to see if a specified user has agreed to all the latest terms and conditions"""
-		
+        
         if TERMS_EXCLUDE_USERS_WITH_PERM is not None:
             if user.has_perm(TERMS_EXCLUDE_USERS_WITH_PERM) and not user.is_superuser:
                 # Django's has_perm() returns True if is_superuser, we don't want that
@@ -146,14 +146,14 @@ class TermsAndConditions(models.Model):
                 return []
         try:        
             user_signature = UserTermsAndConditions.objects.filter(user=user).latest('date_accepted')
-			#if user signed after the latest pricing change, they don't have sign again, else, they do
-			if user_signature.date_accepted > FleetVehiclePricing.get_last_pricing_change_date_by_user(user):
+            #if user signed after the latest pricing change, they don't have sign again, else, they do
+            if user_signature.date_accepted > FleetVehiclePricing.get_last_pricing_change_date_by_user(user):
             #print(user_signature)
-				return []
-			else:
-				not_agreed_terms = TermsAndConditions.get_active_terms_list().order_by('date_active')[0]
-				cache.set('tandc.not_agreed_terms_' + user.get_username(), not_agreed_terms, TERMS_CACHE_SECONDS)
-				return not_agreed_terms
+                return []
+            else:
+                not_agreed_terms = TermsAndConditions.get_active_terms_list().order_by('date_active')[0]
+                cache.set('tandc.not_agreed_terms_' + user.get_username(), not_agreed_terms, TERMS_CACHE_SECONDS)
+                return not_agreed_terms
         except (IndexError, UserTermsAndConditions.DoesNotExist):
             print('no signatures found for user')
             not_agreed_terms = cache.get('tandc.not_agreed_terms_' + user.get_username())
